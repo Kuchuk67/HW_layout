@@ -2,6 +2,7 @@
 # Импорт встроенной библиотеки для работы веб-сервера
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
+from idlelib.iomenu import encoding
 
 # Для начала определим настройки запуска
 hostName = "localhost" # Адрес для доступа по сети
@@ -43,14 +44,10 @@ class MyServer(BaseHTTPRequestHandler):
 
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length)
-        data = json.loads(post_data)
-        response = {"message": f"Data POST: {data['name']}!"}
-
+        body = self.rfile.read(content_length)
         self.send_response(200)
-        self.send_header('Content-type', 'application/json')
         self.end_headers()
-        self.wfile.write(json.dumps(response).encode())
+        self.wfile.write(body)
 
 if __name__ == "__main__":
     # Инициализация веб-сервера, который будет по заданным параметрах в сети
