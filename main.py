@@ -49,7 +49,8 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/html")  # Отправка типа данных, который будет передаваться
         self.end_headers()
         self.wfile.write(bytes(f'<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"></head>'
-                               f'<body><h1>POST-запрос получен</h1><p>{dicts}</p></body>', "utf-8"))
+                               f'<body><h1>POST-запрос получен</h1><p>{dicts}</p>'
+                               f'<a href="./">Вернуться на сайт...</a></body>', "utf-8"))
 
 
 
