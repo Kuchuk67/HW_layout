@@ -40,7 +40,7 @@ class MyServer(BaseHTTPRequestHandler):
 
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
-        body = self.rfile.read(content_length)
+        body = self.rfile.read(content_length)#.decode('utf-8')
         querystr  = (urllib.parse.unquote(body))
         dicts = urllib.parse.parse_qsl(querystr)
         print("POST-запрос",dicts)
